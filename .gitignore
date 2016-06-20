@@ -1,0 +1,4 @@
+.idea/*
+*.xml
+node_modules
+client/bower_components/*.*
