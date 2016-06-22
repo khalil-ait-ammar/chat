@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
 
-user=[];
+users=[];
 connections=[];
 
 server.listen( 3000, function () {
@@ -32,9 +32,18 @@ io.on('connection', function (socket) {
 
 
 
+// new user
+    socket.on('new user',function (data,callback) {
+       callback(true);
+        socket.username = data;
+        users.push(socket.username);
+        updateUsernames();
+    });
 
-
-
+function updateUsernames() {
+    io.sockets.emit('get users',users);
+    
+}
 
 
 // deconnection
