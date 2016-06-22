@@ -23,6 +23,21 @@ io.on('connection', function (socket) {
 
 
 
+
+    //send message
+    socket.on('send message', function (data) {
+        console.log(data);
+        io.sockets.emit('new message',{msg:data});
+    });
+
+
+
+
+
+
+
+
+// deconnection
     socket.on('disconnect', function (data) {
         connections.splice(connections.indexOf(socket),1)
         console.log('user disconnected');
